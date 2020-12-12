@@ -1,5 +1,5 @@
 def main():
-    with open("../01/data.txt", 'r') as f:
+    with open("data.txt", 'r') as f:
         content = f.readlines()
 
     content = [x.replace("\n", '') for x in content]
