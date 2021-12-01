@@ -12,19 +12,11 @@ def main():
     content = load_data(DATA)
 
     counter = 0
-    MAX = len(content)
-
     previous_sum = 0
-    for i, _ in enumerate(content):
-        if i == 0 or i == 1:
-            continue
-        if i + 1 == MAX:
-            break
-
-        window_sum = sum([content[i-1], content[i], content[i+1]])
+    for i in range(2, len(content) - 1):
+        window_sum = sum(content[i - 2:i + 1])
         if window_sum > previous_sum:
             counter += 1
-
         previous_sum = window_sum
 
     print(counter)
