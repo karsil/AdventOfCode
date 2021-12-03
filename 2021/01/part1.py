@@ -1,26 +1,12 @@
-from typing import List
+from utilities import load_data_as_list
 
 DATA = "data.txt"
 
 
-def load_data(path: str) -> List[int]:
-    with open(path, "r") as f:
-        return list(map(int, filter(lambda x: len(x), f.read().split("\n"))))
-
-
-def main():
-    content = load_data(DATA)
-
-    counter = 0
-    for i, _ in enumerate(content):
-        if i == 0:
-            continue
-
-        if content[i] > content[i-1]:
-            counter += 1
-
-    print(counter)
+def puzzle():
+    content = load_data_as_list(DATA, int)
+    return len([1 for i in range(1, len(content) - 1) if content[i] > content[i-1]])
 
 
 if __name__ == "__main__":
-    main()
+    print(puzzle())
