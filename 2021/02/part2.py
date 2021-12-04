@@ -24,13 +24,13 @@ class Direction(Enum):
 
 
 def puzzle(file_path: str) -> int:
-    l_content = load_data_as_list(file_path)
+    l_line_pairs = load_data_as_list(file_path, postprocess=lambda x: x.split())
     l_depth = 0
     l_horizontal = 0
     l_aim = 0
-    for line in l_content:
-        l_direction = line.split()[0]
-        l_value = int(line.split()[1])
+    for line in l_line_pairs:
+        l_direction = line[0]
+        l_value = int(line[1])
         l_depth, l_horizontal, l_aim = Direction.of(value=l_direction)(l_depth, l_horizontal, l_aim, l_value)
     return l_depth * l_horizontal
 
