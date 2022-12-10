@@ -4,12 +4,15 @@ from pathlib import Path
 from aoc.utilities import load_data_as_list
 
 
-DIR = os.path.dirname(__file__)
+DIR = Path(os.path.dirname(__file__))
 
 
 def day01():
-    return load_data_as_list(Path(DIR).joinpath("input.txt"))
+    data = ((int(y) for y in x.split()) for x in load_data_as_list(DIR.joinpath("input.txt"), split="\n\n"))
+    each = sorted(map(sum, data), reverse=True)
+    print(f"Top: {each[0]}")
+    print(f"Sum of top: {sum(each[0:3])}")
 
 
 if __name__ == "__main__":
-    print(day01())
+    day01()
